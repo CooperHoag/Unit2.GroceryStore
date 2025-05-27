@@ -27,6 +27,9 @@ const inventory = [
  */
 function logNames(items) {
   // TODO: use `forEach`
+  items.forEach((item) => {
+    console.log(item.name);
+  });
 }
 
 /**
@@ -35,6 +38,9 @@ function logNames(items) {
  */
 function getUppercaseNames(items) {
   // TODO: use `map`
+  return items.map((item) => {
+    return item.name.toUpperCase();
+  });
 }
 
 /**
@@ -44,6 +50,7 @@ function getUppercaseNames(items) {
  */
 function getItemById(items, id) {
   // TODO: use `find`
+  return items.find((item) => item.id === id);
 }
 
 /**
@@ -53,6 +60,17 @@ function getItemById(items, id) {
  */
 function getItemPriceByName(items, name) {
   // TODO: use a loop!
+  // loop through every itme in the array
+  for (let i = 0; i < items.length; i++) {
+    // check if the current item's name matches the name we're looking for
+    if (items[i].name === name) {
+      // if it matches, return the item's price
+      return items[i].price;
+    }
+  }
+  // need something to stop the loop if user iputs something weird
+  // fun fact, has to be typed in as "undefined" otherwise it apparently errors out
+  return undefined;
 }
 
 /**
@@ -62,7 +80,18 @@ function getItemPriceByName(items, name) {
  */
 function getItemsByCategory(items, category) {
   // TODO: use `filter`
-}
+  // we are filtering for the fruits
+  // so this needs to pull apple, banana, orange. 
+  // return items.filter(function(item) {
+  //   return item.category === category;
+  // })
+  return items
+    .filter((item) => item.category === category)
+    // so, filter is going to pull the whole line
+    // need to .map in order to find just the specific names
+    .map((item) => item.name);
+
+  }
 
 /**
  * @param {Item[]} items - array of items
